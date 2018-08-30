@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Account;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 
 class LoginUserController extends UserController
@@ -25,32 +26,13 @@ class LoginUserController extends UserController
     {
         return view('login');
     }
-    public function dangnhap(Request $request){
-        $account = Account::where('username' ,'=',$request->get('username'))->first();
-        $hashedPw = bcrypt($request->get('password'));
-        $salt = $account->salt;
-        if ($account != null){
-            if ($account->password == $hashedPw.$salt){
-                return view('dntc');
-            }
-            else{
-                return view('dntb');
-            }
-        }
-        else{
-            return view('dntb');
-        }
-    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.

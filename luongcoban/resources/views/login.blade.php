@@ -12,16 +12,27 @@
     {{csrf_field()}}
     <div>
         <div class="form-group row">
-            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+            <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
             <div class="col-md-6">
-                <input id="username" type="text">
+                <input type="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+                       value="{{ old('name') }}" required autofocus>
+
             </div>
         </div>
         <br>
         <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
             <div class="col-md-6">
-                <input id="password" type="password">
+                <input name="password" type="password"
+                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                @endif
+
             </div>
         </div>
     </div>

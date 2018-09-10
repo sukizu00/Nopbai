@@ -19,7 +19,7 @@ class PostController extends Controller
 
         $this->authorize($post, 'view');
 
-        return view ('list', compact('post'));
+        return view ('post_show', compact('post'));
     }
 
     public function create() {
@@ -30,15 +30,23 @@ class PostController extends Controller
         $obj = new Post();
         $obj->title = $request->get('title');
         $obj->body = $request->get('body');
-        $obj->user_id = 2;
+        $obj->user_id = 4;
         $obj->save();
         return view('list');
     }
-    public function destroy($id) {
-        $post = \App\Post::finorFail($id);
+    public function delete($id) {
+        $post = \App\Post::findorFail($id);
 
         $this->authorize($post, 'delete');
 
-        return view ('list');
+        return view ('list',compact('post'));
+    }
+
+    public function edit($id) {
+        $post = \App\Post::findorFail($id);
+
+        $this->authorize($post,'edit');
+
+        return view('list',compact('post'));
     }
 }

@@ -31,9 +31,13 @@ Route::get('create','PostController@create');
 
 Route::post('create','PostController@store');
 
-Route::get('/posts/{id}/delete','PostController@destroy');
+Route::get('post/{id}','PostController@show');
+
+Route::get('/post/{id}/delete','PostController@delete');
 
 Route::get('posts','PostController@index');
+
+Route::get('/post/{id}/edit','PostController@edit');
 
 
 
